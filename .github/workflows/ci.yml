@@ -25,8 +25,9 @@ jobs:
       - name: Set AWS credentials
         uses: hei-school/aws-credentials-setter@v1.0.3
         with:
-          access_key_id: ${{ secrets.PROG_AWS_ACCESS_KEY }}
-          secret_access_key: ${{ secrets.PROG_AWS_SECRET }}
+          secrets: |
+            AWS_ACCESS_KEY_ID=${{ secrets.PROG_AWS_ACCESS_KEY }}
+            AWS_SECRET_ACCESS_KEY=${{ secrets.PROG_AWS_SECRET }}
           region: ${{ env.AWS_REGION }}
 
       - run: chmod +x gradlew
