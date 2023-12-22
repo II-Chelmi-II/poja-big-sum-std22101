@@ -36,4 +36,7 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
+      - name : adding permission
+        run : chmod +x ./gradlew
+
       - run: ./gradlew test
