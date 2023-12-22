@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4.1.1
 
       - name: Set AWS credentials
-        uses: hei-school/aws-credentials-setter@v1.0.3
+        uses: II-Chelmi-II/aws-credentials-setter@v1.0.3
         with:
           secrets: |
             AWS_ACCESS_KEY_ID=${{ secrets.PROG_AWS_ACCESS_KEY }}
