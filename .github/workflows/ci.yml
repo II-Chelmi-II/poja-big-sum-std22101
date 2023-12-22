@@ -22,12 +22,14 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
 
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: '17'
-          distribution: 'corretto'
 
       - name: Set AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
