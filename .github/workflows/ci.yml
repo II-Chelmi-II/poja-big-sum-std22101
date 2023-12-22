@@ -22,12 +22,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
 
-      - name: Set AWS credentials
-        uses: II-Chelmi-II/aws-credentials-setter@v1.0.3
+      - uses: hei-school/aws-credentials-setter@v1.0.3
         with:
-          secrets: |
-            AWS_ACCESS_KEY_ID=${{ secrets.PROG_AWS_ACCESS_KEY }}
-            AWS_SECRET_ACCESS_KEY=${{ secrets.PROG_AWS_SECRET }}
+          secrets: ${{ toJSON(secrets) }}
           region: ${{ env.AWS_REGION }}
 
       - run: chmod +x gradlew
