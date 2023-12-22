@@ -24,8 +24,10 @@ jobs:
 
       - uses: hei-school/aws-credentials-setter@v1.0.3
         with:
-          secrets: ${{ toJSON(secrets) }}
-          region: ${{ env.AWS_REGION }}
+          secrets: |
+            AWS_ACCESS_KEY_ID=${{ secrets.PROG_AWS_ACCESS_KEY }}
+            AWS_SECRET_ACCESS_KEY=${{ secrets.PROG_AWS_SECRET }}
+            region: ${{ env.AWS_REGION }}
 
       - name: Debug Secrets and Environment
         run: |
