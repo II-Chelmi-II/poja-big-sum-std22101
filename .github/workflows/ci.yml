@@ -20,28 +20,29 @@ jobs:
       AWS_REGION: eu-west-3
 
     steps:
-      - uses: actions/checkout@v4.1.1
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
-      - uses: hei-school/aws-credentials-setter@v1.0.3
+      - name: Set AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          secrets: |
-            AWS_ACCESS_KEY_ID=${{ secrets.PROG_AWS_ACCESS_KEY }}
-            AWS_SECRET_ACCESS_KEY=${{ secrets.PROG_AWS_SECRET }}
-            region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Debug Secrets and Environment
         run: |
           echo "Secrets: ${{ toJSON(secrets) }}"
           echo "AWS_REGION: ${{ env.AWS_REGION }}"
 
-      - run: chmod +x gradlew
+      - name: Grant permissions
+        run: chmod +x gradlew
 
-      - uses: actions/setup-java@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'corretto'
 
-      - name : adding permission
-        run : chmod +x ./gradlew
-
-      - run: ./gradlew test
+      - name: Run tests
+        run: ./gradlew test
